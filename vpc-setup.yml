@@ -2,14 +2,14 @@
   connection: local 
   gather_facts: False
   tasks:
-    - name: Import VPC Vvariables
+    - name: Import VPC Variables
       include_vars: vars/vpc-setup.txt
     
     - name: Create vprofile VPC
       amazon.aws.ec2_vpc_net:
         name: "{{vpc_name}}"
         cidr_block: "{{vpcCidr}}"
-        region: "{{us-east-1}}"
+        region: "{{region}}"
         dns_support: yes
         dns_hostnames: yes
         tenancy: default
