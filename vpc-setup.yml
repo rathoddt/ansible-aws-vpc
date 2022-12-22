@@ -17,7 +17,7 @@
       register: vpcout
     - debug: 
         var: vpcout
-    - name: Create subnet for database servers
+    - name: Create subnet1 Zone 1
       amazon.aws.ec2_vpc_subnet:
         vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
@@ -27,5 +27,5 @@
         map_public: yes
         resource_tags: 
           Name: vprofile-pubsub1
-        register: pubsub1_out
+      register: pubsub1_out
         
