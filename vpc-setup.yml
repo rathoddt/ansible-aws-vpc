@@ -131,7 +131,7 @@
         subnets:
           - "{{ privsub1_out.subnet.id }}"
           - "{{ privsub2_out.subnet.id }}"
-          - "{{ privsub3_out_out.subnet.id }}"
+          - "{{ privsub3_out.subnet.id }}"
         routes:
           - dest: 0.0.0.0/0
             gateway_id: "{{ NATGW_out.gateway_id }}"
