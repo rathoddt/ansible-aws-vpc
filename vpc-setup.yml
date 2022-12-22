@@ -89,14 +89,29 @@
           Name: vprofile-privsub3
       register: privsub3_out
 
-    # - name: Create Internet gateway with tags
-    #   amazon.aws.ec2_vpc_igw:
-    #     vpc_id: "{{vpcout.vpc.id}}"
-    #     state: present
-    #     tags:
-    #         Tag1: tag1
-    #         Tag2: tag2
-    #   register: igw
+    - name: Create Internet gateway with tags
+      amazon.aws.ec2_vpc_igw:
+        vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{region}}"
+        state: "{{state}}"
+        tags:
+            Name: Vprofile-PuubRT
+      register: igw_out
+
+    - name: Set up public subnet route table
+      amazon.aws.ec2_vpc_route_table:
+        vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{region}}"
+        tags:
+          Name: Public
+        subnets:
+          - "{{ pubsub1_out.subnet.id }}"
+          - "{{ pubsub2_out.subnet.id }}"
+          - "{{ pubsub3_out.subnet.id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ igw.igw_out }}"
+      register: publRT_out
 
 
     # - name: Create Internet gateway
