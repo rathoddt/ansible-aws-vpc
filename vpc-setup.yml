@@ -89,11 +89,21 @@
           Name: vprofile-privsub3
       register: privsub3_out
 
-    - name: Create Internet gateway
-      aws.ec2_vpc_igw:
+    - name: Create Internet gateway with tags
+      amazon.aws.ec2_vpc_igw:
         vpc_id: "{{vpcout.vpc.id}}"
-        region: "{{region}}"
-        state: "{{state}}"
-        tags: 
-          Name: vprofile-IGW
-      register: igw_out
+        state: present
+        tags:
+            Tag1: tag1
+            Tag2: tag2
+      register: igw
+
+
+    # - name: Create Internet gateway
+    #   amazon.aws.ec2_vpc_igw:
+    #     vpc_id: "{{vpcout.vpc.id}}"
+    #     region: "{{region}}"
+    #     state: "{{state}}"
+    #     tags: 
+    #       Name: vprofile-IGW
+    #   register: igw_out
