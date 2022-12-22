@@ -15,9 +15,9 @@
         tenancy: default
         state: "{{state}}"
       register: vpcout
-    - debug: 
-        var: vpcout
-    - name: Create subnet1 Zone 1
+    # - debug: 
+    #     var: vpcout
+    - name: Create Public subnet1 in Zone 1
       amazon.aws.ec2_vpc_subnet:
         vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
@@ -29,3 +29,62 @@
           Name: vprofile-pubsub1
       register: pubsub1_out
         
+    - name: Create Public subnet2 in Zone 2
+      amazon.aws.ec2_vpc_subnet:
+        vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{region}}"
+        az: "{{zone2}}"
+        state: "{{state}}"
+        cidr: "{{PubSub2Cidr}}"
+        map_public: yes
+        resource_tags: 
+          Name: vprofile-pubsub2
+      register: pubsub2_out
+
+    - name: Create Public subnet3 in Zone 3
+      amazon.aws.ec2_vpc_subnet:
+        vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{region}}"
+        az: "{{zone3}}"
+        state: "{{state}}"
+        cidr: "{{PubSub3Cidr}}"
+        map_public: yes
+        resource_tags: 
+          Name: vprofile-pubsub3
+      register: pubsub3_out
+
+    - name: Create Private subnet1 in Zone 1
+      amazon.aws.ec2_vpc_subnet:
+        vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{region}}"
+        az: "{{zone1}}"
+        state: "{{state}}"
+        cidr: "{{PrivSub1Cidr}}"
+        map_public: yes
+        resource_tags: 
+          Name: vprofile-privsub1
+      register: privsub1_out
+
+    - name: Create Private subnet2 in Zone 2
+      amazon.aws.ec2_vpc_subnet:
+        vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{region}}"
+        az: "{{zone2}}"
+        state: "{{state}}"
+        cidr: "{{PrivSub2Cidr}}"
+        map_public: yes
+        resource_tags: 
+          Name: vprofile-privsub2
+      register: privsub2_out
+
+    - name: Create Private subnet3 in Zone 3
+      amazon.aws.ec2_vpc_subnet:
+        vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{region}}"
+        az: "{{zone3}}"
+        state: "{{state}}"
+        cidr: "{{PrivSub3Cidr}}"
+        map_public: yes
+        resource_tags: 
+          Name: vprofile-privsub3
+      register: privsub3_out
