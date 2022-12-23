@@ -1,0 +1,14 @@
+#Region name 
+region: "us-east-1"
+
+vpcid: vpc-0aa95ae9afb5e0bc9
+pubsub1id: subnet-075b4985df9f1a5fb
+pubsub2id: subnet-0e98b2a6d957157b0
+pubsub3id: subnet-01aad11b4be615d64
+privsub1id: subnet-030d9f860afb9b0b6
+privsub2id: subnet-022a12950be6f32b9
+privsub3id: subnet-028faa9a4fe82491d
+igwid: igw-035a2a66f99bc5e87
+pubRTid: rtb-0c2f65070f74ee0c3
+NATGWid: nat-05b68471b535a717b
+privRTid: rtb-093c44f63936ed88e
