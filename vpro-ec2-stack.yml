@@ -24,3 +24,35 @@
       when: vprokey_out.changed
 
 
+    - name: Create Sec Grp for Load balancer
+      ec2_group:
+        name: vproELB-sg
+        description: Allow port 80 fromeverywhere
+        region: "{{region}}"
+        vpc_id: "{{vpcid}}"
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+      register: vproELBSG_out
+
+    - name: Create Sec Grp for Vprofile stack 
+      ec2_group:
+        name: vproStack-sg
+        description: Allow port 22 
+        region: "{{region}}"
+        vpc_id: "{{vpcid}}"
+        purge_rules: no
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            group_id: "{{vproELBSG_out.group_id}}"
+
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            group_id: "{{BastionSGid}}"
+
+      register: vproELBSG_out
