@@ -1,3 +1,6 @@
+#Region name 
+region: "us-east-1"
+
 vpcid: vpc-0aa95ae9afb5e0bc9
 pubsub1id: subnet-075b4985df9f1a5fb
 pubsub2id: subnet-0e98b2a6d957157b0
