@@ -3,15 +3,14 @@
   connection: local
   become: yes
   tasks:
-    - name: Install  jdk, maven, git
-      apt:
-        name: "{{item}}"
-        state: present
-        update_cache: yes
-      loop:
-        - git
-        - openjdk-8-jdk
-        - maven
+    # - name: Install  jdk, maven, git
+    #   apt:
+    #     name: "{{item}}"
+    #     state: present
+    #     update_cache: yes
+    #   loop:
+    #     - git
+    #     - maven
 
 
     - name: Clone source code from github
