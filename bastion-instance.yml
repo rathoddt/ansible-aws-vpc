@@ -7,7 +7,7 @@
     - name: Import VPC setup Variable
       include_vars: vars/vpc-setup.txt
 
-    - name: Import VPC setup Variable
+    - name: Import VPC setup Variable - vpc_output_vars
       include_vars: vars/vpc_output_vars
     - name: create a new vprofile EC2 key pair, returns generated private key
       amazon.aws.ec2_key:
